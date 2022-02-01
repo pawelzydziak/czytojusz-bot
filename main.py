@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import os
 import random
 import discord
@@ -69,10 +70,6 @@ async def kc(ctx):
 #     # await ctx.send('Tak, to się dzieje. Wejrzyj. Muzyczka i gierki:')
 #     # await ctx.send(fredCommand)
 #     await ctx.send(ctx.help_command)
-@bot.event
-async def on_command_error(ctx, error):
-    if isinstance(error, commands.errors.CommandError):
-        await ctx.send('Nie ma takiej komendy zjebie.')
 
 @bot.command(name='panowie')
 async def panowie(ctx):
