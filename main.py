@@ -3,10 +3,13 @@ import random
 import discord
 from discord.ext import commands
 from dotenv import load_dotenv
+import socket
 ## na komende join, dowiedziec sie jak interacja bot do bota, losowanie random.choice z listy linkow, niech losuje 5 gier z listy gier i podaje linka
 # playlisty z pliku, gry z pliku, poszukac jakiegos whilspinera z api??
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
+
+client = discord.Client()
 
 bot = commands.Bot(command_prefix='??')
 playlists = [
@@ -66,9 +69,16 @@ async def kc(ctx):
 #     # await ctx.send('Tak, to się dzieje. Wejrzyj. Muzyczka i gierki:')
 #     # await ctx.send(fredCommand)
 #     await ctx.send(ctx.help_command)
-# @bot.event
-# async def on_command_error(ctx, error):
-#     if isinstance(error, commands.errors.CommandError):
-#         await ctx.send('Nie ma takiej komendy zjebie.')
+@bot.event
+async def on_command_error(ctx, error):
+    if isinstance(error, commands.errors.CommandError):
+        await ctx.send('Nie ma takiej komendy zjebie.')
 
+@bot.command(name='panowie')
+async def panowie(ctx):
+    await ctx.send(f'Bardzo ważne, {ctx.message.author.name} wzywa na wspaniałom pszygode. Bedom dupy. @everyone')
+
+@bot.command(name='kajjoje')
+async def kajjoje(ctx):
+    await ctx.send(f'{socket.gethostname()}')
 bot.run(TOKEN)
